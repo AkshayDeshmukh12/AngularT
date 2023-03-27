@@ -1,101 +1,116 @@
 {
-  "name": "bootstrap",
-  "description": "The most popular front-end framework for developing responsive, mobile first projects on the web.",
-  "version": "3.4.1",
-  "keywords": [
-    "css",
-    "less",
-    "mobile-first",
-    "responsive",
-    "front-end",
-    "framework",
-    "web"
-  ],
-  "homepage": "https://getbootstrap.com/",
-  "author": "Twitter, Inc.",
-  "scripts": {
-    "sri": "node grunt/generate-sri.js",
-    "release": "grunt prep-release && npm run sri && npm run release-zip",
-    "release-zip": "cross-env-shell \"shx rm -rf bootstrap-$npm_package_version-dist && shx cp -r dist/ bootstrap-$npm_package_version-dist && zip -r9 bootstrap-$npm_package_version-dist.zip bootstrap-$npm_package_version-dist && shx rm -rf bootstrap-$npm_package_version-dist\"",
-    "change-version": "node grunt/change-version.js",
-    "test": "grunt test"
+  "name": "jquery",
+  "title": "jQuery",
+  "description": "JavaScript library for DOM operations",
+  "version": "3.6.4",
+  "main": "dist/jquery.js",
+  "homepage": "https://jquery.com",
+  "author": {
+    "name": "OpenJS Foundation and other contributors",
+    "url": "https://github.com/jquery/jquery/blob/3.6.4/AUTHORS.txt"
   },
-  "style": "dist/css/bootstrap.css",
-  "less": "less/bootstrap.less",
-  "main": "./dist/js/npm",
   "repository": {
     "type": "git",
-    "url": "https://github.com/twbs/bootstrap.git"
+    "url": "https://github.com/jquery/jquery.git"
   },
+  "keywords": [
+    "jquery",
+    "javascript",
+    "browser",
+    "library"
+  ],
   "bugs": {
-    "url": "https://github.com/twbs/bootstrap/issues"
+    "url": "https://github.com/jquery/jquery/issues"
   },
   "license": "MIT",
-  "dependencies": {},
   "devDependencies": {
-    "autoprefixer": "^9.4.7",
-    "btoa": "^1.2.1",
-    "cross-env": "^5.2.0",
-    "glob": "^7.1.3",
-    "grunt": "^1.0.3",
-    "grunt-contrib-clean": "^2.0.0",
-    "grunt-contrib-concat": "^1.0.1",
-    "grunt-contrib-connect": "^2.0.0",
-    "grunt-contrib-copy": "^1.0.0",
-    "grunt-contrib-cssmin": "^3.0.0",
-    "grunt-contrib-jshint": "^2.0.0",
-    "grunt-contrib-less": "^2.0.0",
-    "grunt-contrib-pug": "^2.0.0",
-    "grunt-contrib-uglify": "^4.0.0",
-    "grunt-contrib-watch": "^1.1.0",
-    "grunt-exec": "^3.0.0",
-    "grunt-html": "^10.1.0",
-    "grunt-jekyll": "^1.0.0",
-    "grunt-jscs": "^3.0.1",
-    "grunt-postcss": "^0.9.0",
-    "grunt-stylelint": "^0.10.1",
-    "ip": "^1.1.5",
-    "karma": "^3.1.3",
-    "karma-browserstack-launcher": "^1.4.0",
-    "karma-chrome-launcher": "^2.2.0",
-    "karma-detect-browsers": "^2.3.3",
-    "karma-firefox-launcher": "^1.1.0",
-    "karma-qunit": "^1.2.1",
-    "load-grunt-tasks": "^4.0.0",
-    "markdown-it": "^8.4.2",
-    "qunitjs": "^1.23.1",
-    "replace-in-file": "^3.4.3",
-    "shelljs": "^0.8.3",
-    "shx": "^0.3.2",
-    "stylelint": "~9.6.0",
-    "stylelint-config-standard": "^18.2.0",
-    "stylelint-order": "^1.0.0",
-    "time-grunt": "^2.0.0"
+    "@babel/core": "7.3.3",
+    "@babel/plugin-transform-for-of": "7.2.0",
+    "colors": "1.4.0",
+    "commitplease": "3.2.0",
+    "core-js": "2.6.5",
+    "eslint-config-jquery": "3.0.0",
+    "grunt": "1.5.3",
+    "grunt-babel": "8.0.0",
+    "grunt-cli": "1.4.3",
+    "grunt-compare-size": "0.4.2",
+    "grunt-contrib-uglify": "3.4.0",
+    "grunt-contrib-watch": "1.1.0",
+    "grunt-eslint": "22.0.0",
+    "grunt-git-authors": "3.2.0",
+    "grunt-jsonlint": "2.1.2",
+    "grunt-karma": "4.0.2",
+    "grunt-newer": "1.3.0",
+    "grunt-npmcopy": "0.2.0",
+    "gzip-js": "0.3.2",
+    "husky": "4.2.5",
+    "jsdom": "19.0.0",
+    "karma": "^6.3.17",
+    "karma-browserstack-launcher": "1.6.0",
+    "karma-chrome-launcher": "3.1.1",
+    "karma-firefox-launcher": "2.1.2",
+    "karma-ie-launcher": "1.0.0",
+    "karma-jsdom-launcher": "12.0.0",
+    "karma-qunit": "4.1.2",
+    "load-grunt-tasks": "5.1.0",
+    "native-promise-only": "0.8.1",
+    "promises-aplus-tests": "2.1.2",
+    "q": "1.5.1",
+    "qunit": "2.9.2",
+    "raw-body": "2.3.3",
+    "requirejs": "2.3.6",
+    "sinon": "2.3.7",
+    "sizzle": "2.3.10",
+    "strip-json-comments": "2.0.1",
+    "testswarm": "1.1.2",
+    "uglify-js": "3.4.7"
   },
-  "engines": {
-    "node": ">=6"
+  "scripts": {
+    "build": "npm install && grunt",
+    "start": "grunt watch",
+    "test:browserless": "grunt && grunt test:slow",
+    "test:browser": "grunt && grunt karma:main",
+    "test:amd": "grunt && grunt karma:amd",
+    "test:no-deprecated": "grunt test:prepare && grunt custom:-deprecated && grunt karma:main",
+    "test:no-sizzle": "grunt test:prepare && grunt custom:-sizzle && grunt karma:main",
+    "test:slim": "grunt test:prepare && grunt custom:slim && grunt karma:main",
+    "test": "npm run test:slim && npm run test:no-deprecated && npm run test:no-sizzle && grunt && grunt test:slow && grunt karma:main && grunt karma:amd",
+    "jenkins": "npm run test:browserless"
   },
-  "files": [
-    "dist",
-    "fonts",
-    "grunt",
-    "js/*.js",
-    "less/**/*.less",
-    "Gruntfile.js",
-    "LICENSE"
-  ],
-  "jspm": {
-    "main": "js/bootstrap",
-    "shim": {
-      "js/bootstrap": {
-        "deps": "jquery",
-        "exports": "$"
-      }
-    },
-    "files": [
-      "css",
-      "fonts",
-      "js"
-    ]
+  "commitplease": {
+    "nohook": true,
+    "components": [
+      "Docs",
+      "Tests",
+      "Build",
+      "Support",
+      "Release",
+      "Core",
+      "Ajax",
+      "Attributes",
+      "Callbacks",
+      "CSS",
+      "Data",
+      "Deferred",
+      "Deprecated",
+      "Dimensions",
+      "Effects",
+      "Event",
+      "Manipulation",
+      "Offset",
+      "Queue",
+      "Selector",
+      "Serialize",
+      "Traversing",
+      "Wrap"
+    ],
+    "markerPattern": "^((clos|fix|resolv)(e[sd]|ing))|^(refs?)",
+    "ticketPattern": "^((Closes|Fixes) ([a-zA-Z]{2,}-)[0-9]+)|^(Refs? [^#])"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitplease .git/COMMIT_EDITMSG",
+      "pre-commit": "grunt lint:newer qunit_fixture"
+    }
   }
 }
